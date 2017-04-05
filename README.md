@@ -1,2 +1,0 @@
-# PetShop
-Mobsoft lab project.
