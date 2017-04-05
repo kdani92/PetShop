@@ -1,8 +1,7 @@
-package hu.bme.xj4vjg.petshop.ui.main;
+package hu.bme.xj4vjg.petshop.ui.petlist;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -10,31 +9,32 @@ import hu.bme.xj4vjg.petshop.R;
 
 import static hu.bme.xj4vjg.petshop.PetShopApplication.injector;
 
-public class MainActivity extends AppCompatActivity implements MainScreen {
+public class PetListActivity extends AppCompatActivity implements PetListScreen {
 	@Inject
-	MainPresenter mainPresenter;
+	PetListPresenter petListPresenter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_pet_list);
 		injector.inject(this);
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
-		mainPresenter.attachScreen(this);
+		petListPresenter.attachScreen(this);
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		mainPresenter.detachScreen();
+		petListPresenter.detachScreen();
 	}
 
+
 	@Override
-	public void showMessage(String text) {
-		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+	public void refreshPets() {
+		// TODO
 	}
 }
