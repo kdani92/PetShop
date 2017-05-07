@@ -9,10 +9,13 @@ import hu.bme.xj4vjg.petshop.interactor.pet.network.PetNetworkInteractor;
 import hu.bme.xj4vjg.petshop.interactor.pet.network.event.GetPetDetailNetworkEvent;
 import hu.bme.xj4vjg.petshop.interactor.pet.repository.PetRepositoryInteractor;
 import hu.bme.xj4vjg.petshop.interactor.pet.repository.event.GetPetRepositoryEvent;
+import hu.bme.xj4vjg.petshop.interactor.pet.repository.event.SavePetRepositoryEvent;
 import hu.bme.xj4vjg.petshop.model.Pet;
 import hu.bme.xj4vjg.petshop.ui.Presenter;
 import hu.bme.xj4vjg.petshop.util.di.Network;
 import hu.bme.xj4vjg.petshop.util.di.Repository;
+
+import static hu.bme.xj4vjg.petshop.PetShopApplication.injector;
 
 public class PetDetailPresenter extends Presenter<PetDetailScreen> {
 	@Inject
@@ -34,6 +37,7 @@ public class PetDetailPresenter extends Presenter<PetDetailScreen> {
 	private Pet pet;
 
 	public PetDetailPresenter() {
+		injector.inject(this);
 	}
 
 	@Override
@@ -69,6 +73,7 @@ public class PetDetailPresenter extends Presenter<PetDetailScreen> {
 
 	public void onEventMainThread(GetPetDetailNetworkEvent event) {
 		if (event.getThrowable() != null) {
+			event.getThrowable().printStackTrace();
 			repositoryExecutor.execute(new Runnable() {
 				@Override
 				public void run() {
@@ -89,14 +94,21 @@ public class PetDetailPresenter extends Presenter<PetDetailScreen> {
 			}
 		} else {
 			pet = event.getContent();
+			repositoryExecutor.execute(new Runnable() {
+				@Override
+				public void run() {
+					petRepositoryInteractor.savePet(pet);
+				}
+			});
 			if (screen != null) {
 				screen.refreshPetDetail();
 			}
 		}
 	}
 
-	public void onEventMaindThread(GetPetRepositoryEvent event) {
+	public void onEventMainThread(GetPetRepositoryEvent event) {
 		if (event.getThrowable() != null) {
+			event.getThrowable().printStackTrace();
 			if (screen != null) {
 				screen.showOfflineRepositoryErrorMessage();
 			}
@@ -110,6 +122,12 @@ public class PetDetailPresenter extends Presenter<PetDetailScreen> {
 				screen.showOfflinePetFoundMessage();
 				screen.refreshPetDetail();
 			}
+		}
+	}
+
+	public void onEventMainThread(SavePetRepositoryEvent event) {
+		if (event.getThrowable() != null) {
+			event.getThrowable().printStackTrace();
 		}
 	}
 

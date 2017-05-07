@@ -33,7 +33,32 @@ public class AddPetActivity extends AppCompatActivity implements AddPetScreen {
 	}
 
 	@Override
+	public void showUnknownNetworkErrorMessage() {
+		
+	}
+
+	@Override
+	public void showUnknownUserMessage() {
+
+	}
+
+	@Override
 	public void showWrongPetDetailMessage() {
-		// TODO
+
+	}
+
+	@Override
+	public void showNotAdminUserMessage() {
+
+	}
+
+	@Override
+	public void showPetSavedSuccessfullyMessage() {
+
+	}
+
+	@Override
+	public void navigateToPetList() {
+
 	}
 }

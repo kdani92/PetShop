@@ -58,6 +58,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 
 	public void onEventMainThread(LoginEvent event) {
 		if (event.getThrowable() != null) {
+			event.getThrowable().printStackTrace();
 			if (screen != null) {
 				screen.showNetworkErrorMessage();
 			}
@@ -89,6 +90,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 
 	public void onEventMainThread(RegisterEvent event) {
 		if (event.getThrowable() != null) {
+			event.getThrowable().printStackTrace();
 			if (screen != null) {
 				screen.showNetworkErrorMessage();
 			}
