@@ -1,8 +1,8 @@
 package hu.bme.xj4vjg.petshop.interactor.event;
 
 public class Event<T> {
-	private T content;
-	private Throwable throwable;
+	protected T content;
+	protected Throwable throwable;
 
 	public Event() {
 

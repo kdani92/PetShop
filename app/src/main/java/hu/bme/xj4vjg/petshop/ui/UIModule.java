@@ -14,6 +14,7 @@ import hu.bme.xj4vjg.petshop.ui.addpet.AddPetPresenter;
 import hu.bme.xj4vjg.petshop.ui.login.LoginPresenter;
 import hu.bme.xj4vjg.petshop.ui.petdetail.PetDetailPresenter;
 import hu.bme.xj4vjg.petshop.ui.petlist.PetListPresenter;
+import hu.bme.xj4vjg.petshop.util.di.Network;
 import hu.bme.xj4vjg.petshop.util.di.Repository;
 
 @Module
@@ -34,6 +35,13 @@ public class UIModule {
 	@Singleton
 	@Repository
 	public Executor provideRepositoryExecutor() {
+		return Executors.newFixedThreadPool(1);
+	}
+
+	@Provides
+	@Singleton
+	@Network
+	public Executor provideNetworkExecutor() {
 		return Executors.newFixedThreadPool(1);
 	}
 
