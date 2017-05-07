@@ -5,9 +5,9 @@ import java.util.concurrent.Executor;
 import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
+import hu.bme.xj4vjg.petshop.interactor.auth.AuthInteractor;
 import hu.bme.xj4vjg.petshop.interactor.auth.event.LoginEvent;
 import hu.bme.xj4vjg.petshop.interactor.auth.event.RegisterEvent;
-import hu.bme.xj4vjg.petshop.mock.MockAuthInteractor;
 import hu.bme.xj4vjg.petshop.model.Settings;
 import hu.bme.xj4vjg.petshop.ui.Presenter;
 import hu.bme.xj4vjg.petshop.util.di.Network;
@@ -20,7 +20,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 	Executor executor;
 
 	@Inject
-	MockAuthInteractor authInteractor;
+	AuthInteractor authInteractor;
 
 	@Inject
 	Settings settings;

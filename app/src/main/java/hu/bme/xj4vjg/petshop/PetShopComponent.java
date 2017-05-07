@@ -19,6 +19,7 @@ import hu.bme.xj4vjg.petshop.ui.login.LoginPresenter;
 import hu.bme.xj4vjg.petshop.ui.petdetail.PetDetailActivity;
 import hu.bme.xj4vjg.petshop.ui.petdetail.PetDetailPresenter;
 import hu.bme.xj4vjg.petshop.ui.petlist.PetListActivity;
+import hu.bme.xj4vjg.petshop.ui.petlist.PetListPresenter;
 
 @Singleton
 @Component(modules = {RepositoryModule.class, InteractorModule.class, UIModule.class, MockModule.class})
@@ -40,6 +41,8 @@ public interface PetShopComponent {
 	void inject(LoginPresenter loginPresenter);
 
 	void inject(PetListActivity petListActivity);
+
+	void inject(PetListPresenter petListPresenter);
 
 	void inject(PetDetailActivity petDetailActivity);
 
