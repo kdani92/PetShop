@@ -6,11 +6,16 @@ import android.content.Context;
 import java.util.List;
 
 import hu.bme.xj4vjg.petshop.model.Pet;
+import hu.bme.xj4vjg.petshop.model.Species;
 
 public interface Repository {
 	void open(Context context);
 
 	void close();
+
+	List<Species> getSpecies();
+
+	void updateSpecies(List<Species> speciesList);
 
 	List<Pet> getPets();
 

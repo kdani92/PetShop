@@ -9,7 +9,9 @@ import de.greenrobot.event.EventBus;
 import hu.bme.xj4vjg.petshop.interactor.pet.network.event.AddPetNetworkEvent;
 import hu.bme.xj4vjg.petshop.interactor.pet.network.event.GetPetDetailNetworkEvent;
 import hu.bme.xj4vjg.petshop.interactor.pet.network.event.GetPetsNetworkEvent;
+import hu.bme.xj4vjg.petshop.interactor.pet.network.event.GetSpeciesNetworkEvent;
 import hu.bme.xj4vjg.petshop.model.Pet;
+import hu.bme.xj4vjg.petshop.model.Species;
 import hu.bme.xj4vjg.petshop.repository.MemoryRepository;
 
 import static hu.bme.xj4vjg.petshop.PetShopApplication.injector;
@@ -18,14 +20,24 @@ public class MockPetNetworkInteractor {
 	@Inject
 	EventBus bus;
 
+	private static List<Species> speciesList;
 	private static List<Pet> pets;
 
 	static {
+		speciesList = MemoryRepository.getDummySpeciesList();
 		pets = MemoryRepository.getDummyPets();
 	}
 
 	public MockPetNetworkInteractor() {
 		injector.inject(this);
+	}
+
+	public void getSpecies() {
+		GetSpeciesNetworkEvent getSpeciesNetworkEvent = new GetSpeciesNetworkEvent();
+		getSpeciesNetworkEvent.setContent(speciesList);
+		getSpeciesNetworkEvent.setCode(200);
+
+		bus.post(getSpeciesNetworkEvent);
 	}
 
 	public void getPets() {

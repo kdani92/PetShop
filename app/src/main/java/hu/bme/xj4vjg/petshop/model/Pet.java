@@ -17,15 +17,6 @@ public class Pet {
 
 	}
 
-	public Pet(String species, String color, long timeOfBirth, int price, String imageUrl) {
-		this.petId = null;
-		this.species = species;
-		this.color = color;
-		this.timeOfBirth = timeOfBirth;
-		this.price = price;
-		this.imageUrl = imageUrl;
-	}
-
 	public Pet(String petId, String species, String color, long timeOfBirth, int price, String imageUrl) {
 		this.petId = petId;
 		this.species = species;
@@ -33,6 +24,10 @@ public class Pet {
 		this.timeOfBirth = timeOfBirth;
 		this.price = price;
 		this.imageUrl = imageUrl;
+	}
+
+	public Pet(String species, String color, long timeOfBirth, int price, String imageUrl) {
+		this(null, species, color, timeOfBirth, price, imageUrl);
 	}
 
 	public String getPetId() {
