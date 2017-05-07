@@ -33,7 +33,37 @@ public class PetDetailActivity extends AppCompatActivity implements PetDetailScr
 	}
 
 	@Override
+	public void showUnknownUserMessage() {
+
+	}
+
+	@Override
+	public void showUnknownPetMessage() {
+
+	}
+
+	@Override
+	public void showUnknownServerErrorMessage() {
+
+	}
+
+	@Override
+	public void showOfflineRepositoryErrorMessage() {
+
+	}
+
+	@Override
+	public void showOfflineUnknownPetMessage() {
+
+	}
+
+	@Override
+	public void showOfflinePetFoundMessage() {
+
+	}
+
+	@Override
 	public void refreshPetDetail() {
-		// TODO
+
 	}
 }

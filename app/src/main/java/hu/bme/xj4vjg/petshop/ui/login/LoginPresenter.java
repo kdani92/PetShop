@@ -8,6 +8,7 @@ import de.greenrobot.event.EventBus;
 import hu.bme.xj4vjg.petshop.interactor.auth.event.LoginEvent;
 import hu.bme.xj4vjg.petshop.interactor.auth.event.RegisterEvent;
 import hu.bme.xj4vjg.petshop.mock.MockAuthInteractor;
+import hu.bme.xj4vjg.petshop.model.Settings;
 import hu.bme.xj4vjg.petshop.ui.Presenter;
 import hu.bme.xj4vjg.petshop.util.di.Network;
 
@@ -22,7 +23,12 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 	MockAuthInteractor authInteractor;
 
 	@Inject
+	Settings settings;
+
+	@Inject
 	EventBus bus;
+
+	private String username;
 
 	public LoginPresenter() {
 		injector.inject(this);
@@ -41,6 +47,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 	}
 
 	public void login(final String name, final String password) {
+		this.username = name;
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
@@ -63,6 +70,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 				screen.showNetworkErrorMessage();
 			}
 		} else {
+			settings.setUsername(username);
 			if (screen != null) {
 				screen.naviageToPetList();
 			}
@@ -70,6 +78,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 	}
 
 	public void register(final String name, final String password) {
+		this.username = name;
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
@@ -92,6 +101,7 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 				screen.showNetworkErrorMessage();
 			}
 		} else {
+			settings.setUsername(username);
 			if (screen != null) {
 				screen.naviageToPetList();
 			}

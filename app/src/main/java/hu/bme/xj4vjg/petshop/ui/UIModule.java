@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import de.greenrobot.event.EventBus;
+import hu.bme.xj4vjg.petshop.model.Settings;
 import hu.bme.xj4vjg.petshop.ui.addpet.AddPetPresenter;
 import hu.bme.xj4vjg.petshop.ui.login.LoginPresenter;
 import hu.bme.xj4vjg.petshop.ui.petdetail.PetDetailPresenter;
@@ -23,6 +24,17 @@ public class UIModule {
 
 	public UIModule(Context context) {
 		this.context = context;
+	}
+
+	@Provides
+	public Context provideContext() {
+		return context;
+	}
+
+	@Provides
+	@Singleton
+	public Settings provideSettings() {
+		return new Settings();
 	}
 
 	@Provides
@@ -43,11 +55,6 @@ public class UIModule {
 	@Network
 	public Executor provideNetworkExecutor() {
 		return Executors.newFixedThreadPool(1);
-	}
-
-	@Provides
-	public Context provideContext() {
-		return context;
 	}
 
 	@Provides

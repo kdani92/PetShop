@@ -16,6 +16,7 @@ import hu.bme.xj4vjg.petshop.ui.addpet.AddPetActivity;
 import hu.bme.xj4vjg.petshop.ui.login.LoginActivity;
 import hu.bme.xj4vjg.petshop.ui.login.LoginPresenter;
 import hu.bme.xj4vjg.petshop.ui.petdetail.PetDetailActivity;
+import hu.bme.xj4vjg.petshop.ui.petdetail.PetDetailPresenter;
 import hu.bme.xj4vjg.petshop.ui.petlist.PetListActivity;
 
 @Singleton
@@ -40,6 +41,8 @@ public interface PetShopComponent {
 	void inject(PetListActivity petListActivity);
 
 	void inject(PetDetailActivity petDetailActivity);
+
+	void inject(PetDetailPresenter petDetailPresenter);
 
 	void inject(AddPetActivity addPetActivity);
 }
