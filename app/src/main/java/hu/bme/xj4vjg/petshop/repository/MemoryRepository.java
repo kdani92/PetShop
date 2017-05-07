@@ -36,7 +36,7 @@ public class MemoryRepository implements Repository {
 	@Override
 	public Pet getPet(String petId) {
 		for (Pet pet : pets) {
-			if (pet.getId().equals(petId)) {
+			if (pet.getPetId().equals(petId)) {
 				return pet;
 			}
 		}
@@ -45,8 +45,8 @@ public class MemoryRepository implements Repository {
 
 	@Override
 	public void savePet(Pet pet) {
-		if (containsPet(pet.getId())) {
-			Pet oldPet = getPet(pet.getId());
+		if (containsPet(pet.getPetId())) {
+			Pet oldPet = getPet(pet.getPetId());
 			oldPet.setSpecies(pet.getSpecies());
 			oldPet.setColor(pet.getColor());
 			oldPet.setTimeOfBirth(pet.getTimeOfBirth());
@@ -67,7 +67,7 @@ public class MemoryRepository implements Repository {
 	@Override
 	public boolean containsPet(String petId) {
 		for (Pet pet : pets) {
-			if (pet.getId().equals(petId)) {
+			if (pet.getPetId().equals(petId)) {
 				return true;
 			}
 		}

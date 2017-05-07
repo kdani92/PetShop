@@ -22,6 +22,7 @@ public class PetShopApplication extends Application {
 						uIModule(
 								new UIModule(this)
 						).build();
+		injector.inject(this);
 
 		repository.open(this);
 	}

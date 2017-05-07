@@ -1,7 +1,12 @@
 package hu.bme.xj4vjg.petshop.model;
 
+import com.orm.dsl.Table;
+import com.orm.dsl.Unique;
+
+@Table
 public class Pet {
-	private String id;
+	@Unique
+	private String petId;
 	private String species;
 	private String color;
 	private long timeOfBirth;
@@ -12,8 +17,8 @@ public class Pet {
 
 	}
 
-	public Pet(String id, String species, String color, long timeOfBirth, int price, String imageUrl) {
-		this.id = id;
+	public Pet(String petId, String species, String color, long timeOfBirth, int price, String imageUrl) {
+		this.petId = petId;
 		this.species = species;
 		this.color = color;
 		this.timeOfBirth = timeOfBirth;
@@ -21,12 +26,12 @@ public class Pet {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getId() {
-		return id;
+	public String getPetId() {
+		return petId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setPetId(String petId) {
+		this.petId = petId;
 	}
 
 	public String getSpecies() {
@@ -70,7 +75,7 @@ public class Pet {
 	}
 
 	public boolean equals(Pet pet) {
-		return pet.getId().equals(id);
+		return pet.getPetId().equals(petId);
 	}
 
 	@Override
@@ -87,7 +92,7 @@ public class Pet {
 	@Override
 	public String toString() {
 		return new StringBuilder()
-				.append("Id: ").append(id)
+				.append("Id: ").append(petId)
 				.append(", Species: ").append(species)
 				.append(", Color: ").append(color)
 				.append(", TimeOfBirth: ").append(timeOfBirth)
