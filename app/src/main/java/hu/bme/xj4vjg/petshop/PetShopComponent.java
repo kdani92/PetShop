@@ -14,6 +14,7 @@ import hu.bme.xj4vjg.petshop.repository.RepositoryModule;
 import hu.bme.xj4vjg.petshop.ui.UIModule;
 import hu.bme.xj4vjg.petshop.ui.addpet.AddPetActivity;
 import hu.bme.xj4vjg.petshop.ui.login.LoginActivity;
+import hu.bme.xj4vjg.petshop.ui.login.LoginPresenter;
 import hu.bme.xj4vjg.petshop.ui.petdetail.PetDetailActivity;
 import hu.bme.xj4vjg.petshop.ui.petlist.PetListActivity;
 
@@ -33,6 +34,8 @@ public interface PetShopComponent {
 	void inject(MockPetNetworkInteractor mockPetNetworkInteractor);
 
 	void inject(LoginActivity loginActivity);
+
+	void inject(LoginPresenter loginPresenter);
 
 	void inject(PetListActivity petListActivity);
 
