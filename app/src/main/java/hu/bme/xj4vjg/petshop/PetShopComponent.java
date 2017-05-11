@@ -10,6 +10,7 @@ import hu.bme.xj4vjg.petshop.interactor.pet.repository.PetRepositoryInteractor;
 import hu.bme.xj4vjg.petshop.mock.MockAuthInteractor;
 import hu.bme.xj4vjg.petshop.mock.MockModule;
 import hu.bme.xj4vjg.petshop.mock.MockPetNetworkInteractor;
+import hu.bme.xj4vjg.petshop.network.NetworkModule;
 import hu.bme.xj4vjg.petshop.repository.RepositoryModule;
 import hu.bme.xj4vjg.petshop.ui.UIModule;
 import hu.bme.xj4vjg.petshop.ui.addpet.AddPetActivity;
@@ -22,7 +23,7 @@ import hu.bme.xj4vjg.petshop.ui.petlist.PetListActivity;
 import hu.bme.xj4vjg.petshop.ui.petlist.PetListPresenter;
 
 @Singleton
-@Component(modules = {RepositoryModule.class, InteractorModule.class, UIModule.class, MockModule.class})
+@Component(modules = {RepositoryModule.class, NetworkModule.class, InteractorModule.class, UIModule.class, MockModule.class})
 public interface PetShopComponent {
 	void inject(PetShopApplication petShopApplication);
 
