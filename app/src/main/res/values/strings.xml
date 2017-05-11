@@ -1,3 +1,15 @@
 <resources>
 	<string name="app_name">PetShop</string>
+
+	<string name="activity_login_title">Login</string>
+	<string name="activity_login_welcome">Welcome to PetShop!</string>
+	<string name="activity_login_username_hint">name</string>
+	<string name="activity_login_password_hint">password</string>
+	<string name="activity_login_login">Login</string>
+	<string name="activity_login_empty_fields_error">You must specify a name and password!</string>
+	<string name="activity_login_wrong_credentials_error">Wrong credentials!</string>
+	<string name="activity_login_username_exists_error">The chosen name is in use. Please specify a different name!</string>
+	<string name="activity_login_register">Register</string>
+
+	<string name="network_error">Sorry, an unknown network error occurred!</string>
 </resources>

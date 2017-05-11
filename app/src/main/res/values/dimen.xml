@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="activity_horizontal_margin">20dp</dimen>
+	<dimen name="activity_vertical_margin">20dp</dimen>
+
+	<dimen name="margin_small">4dp</dimen>
+	<dimen name="margin_medium">12dp</dimen>
+	<dimen name="margin_large">45dp</dimen>
+
+	<dimen name="text_size_small">10sp</dimen>
+	<dimen name="text_size_medium">16sp</dimen>
+	<dimen name="text_size_large">24sp</dimen>
+	<dimen name="text_size_title">28sp</dimen>
+	<dimen name="text_size_button">18sp</dimen>
+	<dimen name="text_size_input">16sp</dimen>
+
+	<dimen name="petshop_image_size">130dp</dimen>
+
+	<dimen name="button_width">240dp</dimen>
+	<dimen name="button_height">55dp</dimen>
+</resources>
