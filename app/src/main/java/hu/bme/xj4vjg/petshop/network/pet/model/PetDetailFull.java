@@ -2,6 +2,8 @@ package hu.bme.xj4vjg.petshop.network.pet.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import hu.bme.xj4vjg.petshop.model.Pet;
+
 public class PetDetailFull {
 	@SerializedName("id")
 	private String id;
@@ -75,5 +77,9 @@ public class PetDetailFull {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public Pet getPet() {
+		return new Pet(id, species, color, timeOfBirth, price, imageUrl);
 	}
 }

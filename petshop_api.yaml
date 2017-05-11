@@ -183,6 +183,13 @@ definitions:
         type: string
       password:
         type: string
+  SpeciesDetail:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
   PetDetailSmall:
     type: object
     properties:
@@ -251,4 +258,4 @@ definitions:
           name: species
           wrapped: true
         items:
-          type: string
+          $ref: '#/definitions/SpeciesDetail'
