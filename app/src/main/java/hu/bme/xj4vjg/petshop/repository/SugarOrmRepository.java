@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hu.bme.xj4vjg.petshop.model.Pet;
+import hu.bme.xj4vjg.petshop.model.Species;
 
 public class SugarOrmRepository implements Repository {
 	@Override
@@ -22,11 +23,45 @@ public class SugarOrmRepository implements Repository {
 	}
 
 	@Override
+	public List<Species> getSpecies() {
+		if (speciesTableExists()) {
+			return SugarRecord.listAll(Species.class);
+		}
+		return new ArrayList<>();
+	}
+
+	@Override
 	public List<Pet> getPets() {
 		if (petTableExists()) {
 			return SugarRecord.listAll(Pet.class);
 		}
 		return new ArrayList<>();
+	}
+
+	@Override
+	public void updateSpecies(List<Species> speciesList) {
+		List<Species> speciesListToSave = new ArrayList<>();
+		if (speciesTableExists()) {
+			List<Species> storedSpeciesList = SugarRecord.listAll(Species.class);
+			for (Species species : speciesList) {
+				boolean speciesUpdated = false;
+				for (Species storedSpecies : storedSpeciesList) {
+					if (species.equals(storedSpecies)) {
+						updateSpecies(storedSpecies, species);
+						speciesListToSave.add(storedSpecies);
+						speciesUpdated = true;
+						break;
+					}
+				}
+				if (!speciesUpdated) {
+					speciesListToSave.add(species);
+				}
+			}
+		} else {
+			speciesListToSave.addAll(speciesList);
+		}
+
+		SugarRecord.saveInTx(speciesListToSave);
 	}
 
 	@Override
@@ -106,12 +141,24 @@ public class SugarOrmRepository implements Repository {
 		return false;
 	}
 
+	private boolean speciesTableExists() {
+		try {
+			return SugarRecord.count(Species.class) >= 0;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 	private boolean petTableExists() {
 		try {
 			return SugarRecord.count(Pet.class) >= 0;
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	private void updateSpecies(Species oldSpecies, Species newSpecies) {
+		oldSpecies.setName(newSpecies.getName());
 	}
 
 	private void updatePet(Pet oldPet, Pet newPet) {

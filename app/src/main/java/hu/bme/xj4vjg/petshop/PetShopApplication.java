@@ -20,7 +20,7 @@ public class PetShopApplication extends Application {
 		injector =
 				DaggerPetShopComponent.builder().
 						uIModule(
-								new UIModule(this)
+								new UIModule(getApplicationContext())
 						).build();
 		injector.inject(this);
 

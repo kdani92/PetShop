@@ -14,6 +14,10 @@ public class PetNetworkInteractor {
 		injector.inject(this);
 	}
 
+	public void getSpecies() {
+		// TODO : Call Pet API for list species
+	}
+
 	public void getPets() {
 		// TODO : Call Pet API for list pets
 	}

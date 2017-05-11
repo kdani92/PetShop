@@ -26,6 +26,10 @@ public class Pet {
 		this.imageUrl = imageUrl;
 	}
 
+	public Pet(String species, String color, long timeOfBirth, int price, String imageUrl) {
+		this(null, species, color, timeOfBirth, price, imageUrl);
+	}
+
 	public String getPetId() {
 		return petId;
 	}

@@ -2,7 +2,6 @@ package hu.bme.xj4vjg.petshop.ui.login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -36,6 +35,16 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
 
 	@Override
 	public void showWrongCredentialsMessage() {
+		// TODO
+	}
+
+	@Override
+	public void showUsernameExistsMessage() {
+		// TODO
+	}
+
+	@Override
+	public void showNetworkErrorMessage() {
 		// TODO
 	}
 

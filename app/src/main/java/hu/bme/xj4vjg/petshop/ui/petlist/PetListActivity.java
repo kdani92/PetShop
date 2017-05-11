@@ -32,9 +32,28 @@ public class PetListActivity extends AppCompatActivity implements PetListScreen 
 		petListPresenter.detachScreen();
 	}
 
+	@Override
+	public void showUnknownUserMessage() {
+
+	}
+
+	@Override
+	public void showUnknownServerErrorMessage() {
+
+	}
+
+	@Override
+	public void showOfflineRepositoryErrorMessage() {
+
+	}
+
+	@Override
+	public void showOfflinePetsFoundMessage() {
+
+	}
 
 	@Override
 	public void refreshPets() {
-		// TODO
+
 	}
 }

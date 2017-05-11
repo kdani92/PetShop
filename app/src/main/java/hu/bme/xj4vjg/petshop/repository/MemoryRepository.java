@@ -7,18 +7,43 @@ import java.util.Calendar;
 import java.util.List;
 
 import hu.bme.xj4vjg.petshop.model.Pet;
+import hu.bme.xj4vjg.petshop.model.Species;
 
 public class MemoryRepository implements Repository {
+	private List<Species> speciesList;
 	private List<Pet> pets;
 
 	@Override
 	public void open(Context context) {
+		speciesList = getDummySpeciesList();
 		pets = getDummyPets();
 	}
 
 	@Override
 	public void close() {
 		pets.clear();
+	}
+
+	@Override
+	public List<Species> getSpecies() {
+		return speciesList;
+	}
+
+	@Override
+	public void updateSpecies(List<Species> speciesList) {
+		for (Species species : speciesList) {
+			boolean storedSpecies = false;
+			for (Species oldSpecies : this.speciesList) {
+				if (species.equals(oldSpecies)) {
+					storedSpecies = true;
+					oldSpecies.setName(species.getName());
+					break;
+				}
+			}
+			if (!storedSpecies) {
+				this.speciesList.add(species);
+			}
+		}
 	}
 
 	@Override
@@ -72,6 +97,18 @@ public class MemoryRepository implements Repository {
 			}
 		}
 		return false;
+	}
+
+	public static List<Species> getDummySpeciesList() {
+		List<Species> dummySpeciesList = new ArrayList<>();
+		dummySpeciesList.add(new Species("species1", "rabbit"));
+		dummySpeciesList.add(new Species("species2", "guinea pig"));
+		dummySpeciesList.add(new Species("species3", "cat"));
+		dummySpeciesList.add(new Species("species4", "dog"));
+		dummySpeciesList.add(new Species("species5", "snake"));
+		dummySpeciesList.add(new Species("species6", "rat"));
+
+		return dummySpeciesList;
 	}
 
 	public static List<Pet> getDummyPets() {

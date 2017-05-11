@@ -35,6 +35,7 @@ public class MockAuthInteractor {
 		if (users.containsKey(username)) {
 			registerEvent.setCode(410);
 		} else {
+			users.put(username, password);
 			registerEvent.setCode(200);
 		}
 		bus.post(registerEvent);
