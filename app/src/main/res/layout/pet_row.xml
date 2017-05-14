@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:focusable="true"
+				android:paddingBottom="@dimen/pet_row_vertical_padding"
+				android:paddingLeft="@dimen/pet_row_horizontal_padding"
+				android:paddingRight="@dimen/pet_row_horizontal_padding"
+				android:paddingTop="@dimen/pet_row_vertical_padding"
+				android:clickable="true"
+				android:background="?android:attr/selectableItemBackground"
+				android:orientation="vertical">
+
+	<android.support.v7.widget.CardView
+		android:id="@+id/pet_card_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingBottom="@dimen/pet_row_card_view_vertical_padding"
+			android:paddingLeft="@dimen/pet_row_card_view_horizontal_padding"
+			android:paddingRight="@dimen/pet_row_card_view_horizontal_padding"
+			android:paddingTop="@dimen/pet_row_card_view_vertical_padding">
+
+			<ImageView
+				android:id="@+id/pet_image_view"
+				android:layout_width="@dimen/pet_row_pet_image_size"
+				android:layout_height="@dimen/pet_row_pet_image_size"
+				android:layout_alignParentLeft="true"
+				android:layout_centerVertical="true"
+				android:layout_marginRight="@dimen/margin_medium"
+				android:scaleType="centerCrop"/>
+
+			<TextView
+				android:id="@+id/pet_species_text_view"
+				style="@style/TextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toRightOf="@+id/pet_image_view"
+				android:textSize="@dimen/text_size_medium"/>
+
+			<TextView
+				android:id="@+id/pet_price_text_view"
+				style="@style/TextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true"
+				android:textSize="@dimen/text_size_medium"/>
+
+		</RelativeLayout>
+	</android.support.v7.widget.CardView>
+
+</RelativeLayout>

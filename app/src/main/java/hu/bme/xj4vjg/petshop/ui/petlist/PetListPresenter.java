@@ -7,7 +7,6 @@ import java.util.concurrent.Executor;
 import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
-import hu.bme.xj4vjg.petshop.interactor.pet.network.PetNetworkInteractor;
 import hu.bme.xj4vjg.petshop.interactor.pet.network.event.GetPetsNetworkEvent;
 import hu.bme.xj4vjg.petshop.interactor.pet.network.event.GetSpeciesNetworkEvent;
 import hu.bme.xj4vjg.petshop.interactor.pet.repository.PetRepositoryInteractor;
@@ -15,6 +14,7 @@ import hu.bme.xj4vjg.petshop.interactor.pet.repository.event.GetPetsRepositoryEv
 import hu.bme.xj4vjg.petshop.interactor.pet.repository.event.GetSpeciesRepositoryEvent;
 import hu.bme.xj4vjg.petshop.interactor.pet.repository.event.UpdatePetsRepositoryEvent;
 import hu.bme.xj4vjg.petshop.interactor.pet.repository.event.UpdateSpeciesRepositoryEvent;
+import hu.bme.xj4vjg.petshop.mock.MockPetNetworkInteractor;
 import hu.bme.xj4vjg.petshop.model.Pet;
 import hu.bme.xj4vjg.petshop.model.Species;
 import hu.bme.xj4vjg.petshop.ui.Presenter;
@@ -34,7 +34,7 @@ public class PetListPresenter extends Presenter<PetListScreen> {
 	@Inject
 	PetRepositoryInteractor petRepositoryInteractor;
 	@Inject
-	PetNetworkInteractor petNetworkInteractor;
+	MockPetNetworkInteractor petNetworkInteractor;
 
 	@Inject
 	EventBus bus;
@@ -186,13 +186,17 @@ public class PetListPresenter extends Presenter<PetListScreen> {
 		filteredPetList.clear();
 
 		activeSpeciesFilters.addAll(speciesFilters);
-		for (Pet pet : petList) {
-			for (Species species : activeSpeciesFilters) {
-				if (pet.getSpecies().equals(species.getName())) {
-					filteredPetList.add(pet);
-					break;
+		if (activeSpeciesFilters.size() > 0) {
+			for (Pet pet : petList) {
+				for (Species species : activeSpeciesFilters) {
+					if (pet.getSpecies().equals(species.getName())) {
+						filteredPetList.add(pet);
+						break;
+					}
 				}
 			}
+		} else {
+			filteredPetList.addAll(petList);
 		}
 
 		if (screen != null) {

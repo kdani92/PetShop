@@ -1,6 +1,16 @@
 <resources>
 	<string name="app_name">PetShop</string>
 
+	<!-- Navigation drawer -->
+	<string name="nav_drawer_pets">Browse pets</string>
+	<string name="nav_drawer_add_pet">Add pet</string>
+	<string name="nav_drawer_logout">Logout</string>
+	<string name="navigation_drawer_open">Open navigation drawer</string>
+	<string name="navigation_drawer_close">Close navigation drawer</string>
+	<string name="openDrawer">open_drawer</string>
+	<string name="closeDrawer">close_drawer</string>
+
+	<!-- Activity Login -->
 	<string name="activity_login_title">Login</string>
 	<string name="activity_login_welcome">Welcome to PetShop!</string>
 	<string name="activity_login_username_hint">name</string>
@@ -11,5 +21,21 @@
 	<string name="activity_login_username_exists_error">The chosen name is in use. Please specify a different name!</string>
 	<string name="activity_login_register">Register</string>
 
-	<string name="network_error">Sorry, an unknown network error occurred!</string>
+	<!-- Activity Main -->
+	<string name="activity_main_title">Main</string>
+
+	<!-- Fragment Pet List -->
+	<string name="fragment_pet_list_title">Pets</string>
+	<string name="fragment_pet_list_">Pets</string>
+
+
+	<string name="fragment_add_pet_title">Add pet</string>
+
+	<string name="fragment_pet_detail_title">Pet details</string>
+
+	<!-- Global error messages -->
+	<string name="network_error">An unknown network error occurred!</string>
+	<string name="unknown_user_error">Unknown user!</string>
+	<string name="offline_with_repository_error">An unknown repository error occured during Offline mode!</string>
+	<string name="offline_but_pets_found_from_repo_error">Showing pet list with Offline mode!</string>
 </resources>

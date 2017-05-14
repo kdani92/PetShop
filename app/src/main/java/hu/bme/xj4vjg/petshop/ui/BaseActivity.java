@@ -22,6 +22,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 		}
 	}
 
+	protected void setToolbar(Toolbar toolbar) {
+		if (toolbar != null) {
+			setSupportActionBar(toolbar);
+		}
+	}
+
 	protected void setToolbar(Toolbar toolbar, int titleResId) {
 		setToolbar(toolbar, getString(titleResId));
 	}

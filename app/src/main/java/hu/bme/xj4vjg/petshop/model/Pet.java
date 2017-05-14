@@ -3,6 +3,10 @@ package hu.bme.xj4vjg.petshop.model;
 import com.orm.dsl.Table;
 import com.orm.dsl.Unique;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 @Table
 public class Pet {
 	@Unique
@@ -28,6 +32,10 @@ public class Pet {
 
 	public Pet(String species, String color, long timeOfBirth, int price, String imageUrl) {
 		this(null, species, color, timeOfBirth, price, imageUrl);
+	}
+
+	public String getPriceFormatted() {
+		return Integer.toString(price);
 	}
 
 	public String getPetId() {

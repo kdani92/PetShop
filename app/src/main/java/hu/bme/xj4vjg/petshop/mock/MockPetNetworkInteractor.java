@@ -11,6 +11,7 @@ import hu.bme.xj4vjg.petshop.interactor.pet.network.event.GetPetDetailNetworkEve
 import hu.bme.xj4vjg.petshop.interactor.pet.network.event.GetPetsNetworkEvent;
 import hu.bme.xj4vjg.petshop.interactor.pet.network.event.GetSpeciesNetworkEvent;
 import hu.bme.xj4vjg.petshop.model.Pet;
+import hu.bme.xj4vjg.petshop.model.Settings;
 import hu.bme.xj4vjg.petshop.model.Species;
 import hu.bme.xj4vjg.petshop.repository.MemoryRepository;
 
@@ -19,6 +20,9 @@ import static hu.bme.xj4vjg.petshop.PetShopApplication.injector;
 public class MockPetNetworkInteractor {
 	@Inject
 	EventBus bus;
+
+	@Inject
+	Settings settings;
 
 	private static List<Species> speciesList;
 	private static List<Pet> pets;
@@ -70,11 +74,16 @@ public class MockPetNetworkInteractor {
 
 	public void addPet(String species, String color, long timeOfBirth, int price, String imageUrl) {
 		AddPetNetworkEvent addPetNetworkEvent = new AddPetNetworkEvent();
-		String petId = UUID.randomUUID().toString();
-		pets.add(new Pet(petId.toString(), species, color, timeOfBirth, price, imageUrl));
-
-		addPetNetworkEvent.setContent(petId);
-		addPetNetworkEvent.setCode(200);
+		if (!MockAuthInteractor.isUserAdmin(settings.getUsername())) {
+			addPetNetworkEvent.setCode(420);
+		} else if (species == null || species.isEmpty()) {
+			addPetNetworkEvent.setCode(410);
+		} else {
+			String petId = UUID.randomUUID().toString();
+			pets.add(new Pet(petId.toString(), species, color, timeOfBirth, price, imageUrl));
+			addPetNetworkEvent.setCode(200);
+			addPetNetworkEvent.setContent(petId);
+		}
 
 		bus.post(addPetNetworkEvent);
 	}

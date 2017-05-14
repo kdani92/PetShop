@@ -22,6 +22,8 @@ public class MockAuthInteractor {
 		users.put("used1", "pass");
 		users.put("used2", "pass");
 		users.put("user", "pass");
+		users.put("admin", "pass");
+		users.put("a", "p");
 		users.put("u", "p");
 		users.put("name", "pass");
 	}
@@ -49,5 +51,12 @@ public class MockAuthInteractor {
 			loginEvent.setCode(200);
 		}
 		bus.post(loginEvent);
+	}
+
+	public static boolean isUserAdmin(String name) {
+		if (name.equals("admin") || name.equals("a")) {
+			return true;
+		}
+		return false;
 	}
 }

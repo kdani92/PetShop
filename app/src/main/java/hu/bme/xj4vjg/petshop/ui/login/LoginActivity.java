@@ -40,12 +40,13 @@ public class LoginActivity extends BaseActivity implements LoginScreen {
 	protected void onStart() {
 		super.onStart();
 		loginPresenter.attachScreen(this);
+		naviageToPetList();
 	}
 
 	@Override
 	protected void onStop() {
-		super.onStop();
 		loginPresenter.detachScreen();
+		super.onStop();
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class LoginActivity extends BaseActivity implements LoginScreen {
 
 	@Override
 	public void naviageToPetList() {
-		Navigator.navigateToPetList(this);
+		Navigator.navigateToMain(this);
 	}
 
 	@OnClick(R.id.button_register)
