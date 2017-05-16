@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -20,11 +21,13 @@ import hu.bme.xj4vjg.petshop.model.Pet;
 import hu.bme.xj4vjg.petshop.model.Species;
 import hu.bme.xj4vjg.petshop.ui.BaseFragment;
 import hu.bme.xj4vjg.petshop.ui.petlist.adapter.PetAdapter;
+import hu.bme.xj4vjg.petshop.ui.petlist.dialog.SpeciesFilterDialog;
 
 import static hu.bme.xj4vjg.petshop.PetShopApplication.injector;
 
 public class PetListFragment extends BaseFragment implements
 		PetAdapter.OnPetClickedListener,
+		SpeciesFilterDialog.OnSpeciesSelectedListener,
 		PetListScreen {
 	public static final String TAG = "PetListFragment";
 
@@ -108,6 +111,20 @@ public class PetListFragment extends BaseFragment implements
 		if (listener != null) {
 			listener.onPetSelected(pet.getPetId());
 		}
+	}
+
+	public void onFilterClicked() {
+		SpeciesFilterDialog speciesFilterDialog = new SpeciesFilterDialog(
+				getContext(),
+				new ArrayList<>(petListPresenter.getSpeciesList()),
+				new ArrayList<>(petListPresenter.getActiveSpeciesFilters()));
+		speciesFilterDialog.setListener(this);
+		speciesFilterDialog.show();
+	}
+
+	@Override
+	public void onSpeciesSelected(List<Species> speciesList) {
+		petListPresenter.applySpeciesFilters(speciesList);
 	}
 
 	@Override

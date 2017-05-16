@@ -6,4 +6,6 @@
 	<color name="colorToolbar">@color/colorPrimary</color>
 	<color name="colorTextPrimary">#FAFAFA</color>
 	<color name="colorTextSecondary">#111111</color>
+
+	<color name="white">#FFFFFF</color>
 </resources>

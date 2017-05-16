@@ -30,6 +30,11 @@
 	<string name="fragment_pet_list_menu_add_pet">Add pet</string>
 	<string name="fragment_pet_list_menu_filter">Filter pets</string>
 
+	<!-- Dialog pet filter -->
+	<string name="dialog_pet_filter_title">Filter pets</string>
+	<string name="dialog_pet_filter_choose">Choose</string>
+	<string name="dialog_pet_filter_cancel">Cancel</string>
+
 	<!-- Fragment Add Pet -->
 	<string name="fragment_add_pet_title">Add pet</string>
 	<string name="fragment_add_pet_species">species</string>

@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -48,6 +49,7 @@ public class MainActivity extends BaseActivity implements
 	private ContentDetail petDetailContentDetail;
 	private ContentDetail logoutContentDetail;
 	private ContentDetail currentContentDetail;
+	private Fragment currentFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -178,6 +180,7 @@ public class MainActivity extends BaseActivity implements
 					break;
 			}
 
+			currentFragment = fragment;
 			transaction.replace(R.id.fragment_container, fragment);
 			transaction.addToBackStack(null);
 			transaction.commit();
@@ -232,15 +235,18 @@ public class MainActivity extends BaseActivity implements
 				return true;
 
 			case R.id.menu_filter:
-				showFilterPetsDialog();
+				if (currentContentDetail == petsContentDetail) {
+					try {
+						Log.d("MainActivity", "Current fragment is " + currentFragment.getClass().toString());
+						((PetListFragment) currentFragment).onFilterClicked();
+					} catch (ClassCastException e) {
+						Log.d("MainActivity", "Current fragment should be PetListFragment");
+					}
+				}
 				return true;
 
 			default:
 				return super.onOptionsItemSelected(item);
 		}
-	}
-
-	public void showFilterPetsDialog() {
-
 	}
 }

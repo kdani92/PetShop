@@ -3,10 +3,7 @@ package hu.bme.xj4vjg.petshop.model;
 import com.orm.dsl.Table;
 import com.orm.dsl.Unique;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 import hu.bme.xj4vjg.petshop.network.pet.model.NewPetDetail;
 
