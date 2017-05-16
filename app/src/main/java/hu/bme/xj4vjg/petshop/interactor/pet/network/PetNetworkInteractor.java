@@ -76,7 +76,9 @@ public class PetNetworkInteractor {
 			response = call.execute();
 
 			event.setCode(response.code());
-			event.setContent(response.body().getPet());
+			if (response.code() == 200) {
+				event.setContent(response.body().getPet());
+			}
 			bus.post(event);
 		} catch (Exception e) {
 			event.setThrowable(e);
@@ -95,7 +97,9 @@ public class PetNetworkInteractor {
 			response = call.execute();
 
 			event.setCode(response.code());
-			event.setContent(response.body().getPetId());
+			if (response.code() == 200) {
+				event.setContent(response.body().getPetId());
+			}
 			bus.post(event);
 		} catch (Exception e) {
 			event.setThrowable(e);
