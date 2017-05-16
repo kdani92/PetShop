@@ -26,4 +26,10 @@ public class PetShopApplication extends Application {
 
 		repository.open(this);
 	}
+
+	public void setInjector(PetShopComponent appComponent) {
+		injector = appComponent;
+		injector.inject(this);
+		repository.open(getApplicationContext());
+	}
 }
