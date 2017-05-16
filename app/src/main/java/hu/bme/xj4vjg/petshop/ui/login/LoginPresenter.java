@@ -47,13 +47,19 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 	}
 
 	public void login(final String name, final String password) {
-		this.username = name;
-		executor.execute(new Runnable() {
-			@Override
-			public void run() {
-				authInteractor.login(name, password);
+		if (checkForEmptyCredentials(name, password)) {
+			if (screen != null) {
+				screen.showEmptyFieldsMessage();
 			}
-		});
+		} else {
+			this.username = name;
+			executor.execute(new Runnable() {
+				@Override
+				public void run() {
+					authInteractor.login(name, password);
+				}
+			});
+		}
 	}
 
 	public void onEventMainThread(LoginEvent event) {
@@ -79,13 +85,19 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 	}
 
 	public void register(final String name, final String password) {
-		this.username = name;
-		executor.execute(new Runnable() {
-			@Override
-			public void run() {
-				authInteractor.register(name, password);
+		if (checkForEmptyCredentials(name, password)) {
+			if (screen != null) {
+				screen.showEmptyFieldsMessage();
 			}
-		});
+		} else {
+			this.username = name;
+			executor.execute(new Runnable() {
+				@Override
+				public void run() {
+					authInteractor.register(name, password);
+				}
+			});
+		}
 	}
 
 	public void onEventMainThread(RegisterEvent event) {
@@ -108,5 +120,9 @@ public class LoginPresenter extends Presenter<LoginScreen> {
 				screen.naviageToPetList();
 			}
 		}
+	}
+
+	private boolean checkForEmptyCredentials(String username, String password) {
+		return username == null || username.isEmpty() || password == null || password.isEmpty();
 	}
 }

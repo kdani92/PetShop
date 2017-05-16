@@ -2,6 +2,11 @@ package hu.bme.xj4vjg.petshop.network.pet.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import hu.bme.xj4vjg.petshop.model.Pet;
+
 public class PetDetailSmall {
 	@SerializedName("id")
 	private String id;
@@ -53,5 +58,13 @@ public class PetDetailSmall {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public static List<PetDetailSmall> getPetDetailSmallList(List<Pet> petList) {
+		List<PetDetailSmall> petDetailSmallList = new ArrayList<>();
+		for (Pet pet : petList) {
+			petDetailSmallList.add(new PetDetailSmall(pet.getPetId(), pet.getSpecies(), pet.getPrice(), pet.getImageUrl()));
+		}
+		return petDetailSmallList;
 	}
 }

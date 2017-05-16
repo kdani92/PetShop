@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="activity_horizontal_margin">20dp</dimen>
+	<dimen name="activity_vertical_margin">20dp</dimen>
+
+	<!-- Nav drawer -->
+	<dimen name="nav_drawer_header_vertical_spacing">16dp</dimen>
+	<dimen name="nav_drawer_header_height">180dp</dimen>
+
+	<dimen name="margin_small">4dp</dimen>
+	<dimen name="margin_medium">12dp</dimen>
+	<dimen name="margin_large">45dp</dimen>
+	<dimen name="margin_xlarge">65dp</dimen>
+
+	<dimen name="text_size_small">10sp</dimen>
+	<dimen name="text_size_medium">16sp</dimen>
+	<dimen name="text_size_large">24sp</dimen>
+	<dimen name="text_size_title">28sp</dimen>
+	<dimen name="text_size_button">18sp</dimen>
+	<dimen name="text_size_input">16sp</dimen>
+	<dimen name="text_size_nav_header">20sp</dimen>
+
+	<dimen name="petshop_image_size">130dp</dimen>
+
+	<dimen name="button_width">240dp</dimen>
+	<dimen name="button_height">55dp</dimen>
+
+	<!-- Pet list row -->
+	<dimen name="pet_row_horizontal_padding">8dp</dimen>
+	<dimen name="pet_row_vertical_padding">2dp</dimen>
+	<dimen name="pet_row_card_view_horizontal_padding">14dp</dimen>
+	<dimen name="pet_row_card_view_vertical_padding">10dp</dimen>
+	<dimen name="pet_row_pet_image_size">50dp</dimen>
+
+	<!-- Pet Detail -->
+	<dimen name="pet_image_size">220dp</dimen>
+
+	<!-- Add Pet -->
+	<dimen name="new_pet_image_size">140dp</dimen>
+</resources>

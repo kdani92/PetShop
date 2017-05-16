@@ -186,13 +186,17 @@ public class PetListPresenter extends Presenter<PetListScreen> {
 		filteredPetList.clear();
 
 		activeSpeciesFilters.addAll(speciesFilters);
-		for (Pet pet : petList) {
-			for (Species species : activeSpeciesFilters) {
-				if (pet.getSpecies().equals(species.getName())) {
-					filteredPetList.add(pet);
-					break;
+		if (activeSpeciesFilters.size() > 0) {
+			for (Pet pet : petList) {
+				for (Species species : activeSpeciesFilters) {
+					if (pet.getSpecies().equals(species.getName())) {
+						filteredPetList.add(pet);
+						break;
+					}
 				}
 			}
+		} else {
+			filteredPetList.addAll(petList);
 		}
 
 		if (screen != null) {
