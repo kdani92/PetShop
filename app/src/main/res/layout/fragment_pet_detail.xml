@@ -3,12 +3,126 @@
 			  xmlns:tools="http://schemas.android.com/tools"
 			  android:layout_width="match_parent"
 			  android:layout_height="match_parent"
-			  android:orientation="vertical"
-			  tools:context="hu.bme.xj4vjg.petshop.ui.login.LoginActivity">
+			  android:layout_marginBottom="@dimen/activity_vertical_margin"
+			  android:layout_marginLeft="@dimen/activity_horizontal_margin"
+			  android:layout_marginRight="@dimen/activity_horizontal_margin"
+			  android:layout_marginTop="@dimen/activity_vertical_margin"
+			  android:orientation="vertical">
 
-	<TextView
+	<ImageView
+		android:id="@+id/pet_image_view"
+		android:layout_width="@dimen/pet_image_size"
+		android:layout_height="@dimen/pet_image_size"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="@dimen/margin_xlarge"
+		android:scaleType="centerCrop"/>
+
+	<LinearLayout
+		android:id="@+id/species_layout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="Pet Detail Fragment Content" />
+		android:layout_marginBottom="@dimen/margin_medium"
+		android:orientation="horizontal"
+		android:weightSum="10">
+
+		<TextView
+			android:id="@+id/species_title"
+			style="@style/TextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="3"
+			android:text="@string/fragment_pet_detail_species"
+			android:textStyle="bold"/>
+
+		<TextView
+			android:id="@+id/species_text_view"
+			style="@style/TextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="7"/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/color_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/margin_medium"
+		android:orientation="horizontal"
+		android:weightSum="10">
+
+		<TextView
+			android:id="@+id/color_title"
+			style="@style/TextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="3"
+			android:text="@string/fragment_pet_detail_color"
+			android:textStyle="bold"/>
+
+		<TextView
+			android:id="@+id/color_text_view"
+			style="@style/TextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="7"/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/age_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/margin_medium"
+		android:orientation="horizontal"
+		android:weightSum="10">
+
+		<TextView
+			android:id="@+id/age_title"
+			style="@style/TextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="3"
+			android:text="@string/fragment_pet_detail_age"
+			android:textStyle="bold"/>
+
+		<TextView
+			android:id="@+id/age_text_view"
+			style="@style/TextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="7"/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/price_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/margin_medium"
+		android:orientation="horizontal"
+		android:weightSum="10">
+
+		<TextView
+			android:id="@+id/price_title"
+			style="@style/TextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="3"
+			android:text="@string/fragment_pet_detail_price"
+			android:textStyle="bold"/>
+
+		<TextView
+			android:id="@+id/price_text_view"
+			style="@style/TextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="7"/>
+	</LinearLayout>
 
 </LinearLayout>

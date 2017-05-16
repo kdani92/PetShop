@@ -27,15 +27,33 @@
 	<!-- Fragment Pet List -->
 	<string name="fragment_pet_list_title">Pets</string>
 	<string name="fragment_pet_list_">Pets</string>
+	<string name="fragment_pet_list_menu_add_pet">Add pet</string>
+	<string name="fragment_pet_list_menu_filter">Filter pets</string>
 
-
+	<!-- Fragment Add Pet -->
 	<string name="fragment_add_pet_title">Add pet</string>
+	<string name="fragment_add_pet_species">species</string>
+	<string name="fragment_add_pet_color">color</string>
+	<string name="fragment_add_pet_age">age in months</string>
+	<string name="fragment_add_pet_price">price</string>
+	<string name="fragment_add_pet_add">Add</string>
 
+	<!-- Fragment Pet Detail -->
 	<string name="fragment_pet_detail_title">Pet details</string>
+	<string name="fragment_pet_detail_detail">details</string>
+	<string name="fragment_pet_detail_species">Species:</string>
+	<string name="fragment_pet_detail_color">Color:</string>
+	<string name="fragment_pet_detail_age">Age:</string>
+	<string name="fragment_pet_detail_price">Price:</string>
+	<string name="fragment_pet_detail_wrong_detail">Wrong pet detail</string>
 
 	<!-- Global error messages -->
 	<string name="network_error">An unknown network error occurred!</string>
+	<string name="not_admin_user_erre">You have to be Admin to do that operation!</string>
 	<string name="unknown_user_error">Unknown user!</string>
+	<string name="unknown_pet_error">Unknown pet detail!</string>
 	<string name="offline_with_repository_error">An unknown repository error occured during Offline mode!</string>
-	<string name="offline_but_pets_found_from_repo_error">Showing pet list with Offline mode!</string>
+	<string name="offline_but_pets_found_from_repo">Showing pet list with Offline mode!</string>
+	<string name="offline_and_pet_detail_not_found_from_repo_error">Pet detail not found with Offline mode!</string>
+	<string name="offline_but_pet_detail_found_from_repo">Showing pet detail with Offline mode!</string>
 </resources>

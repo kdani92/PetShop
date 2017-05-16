@@ -9,7 +9,5 @@ public interface AddPetScreen {
 
 	void showNotAdminUserMessage();
 
-	void showPetSavedSuccessfullyMessage();
-
 	void navigateToPetList();
 }

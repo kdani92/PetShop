@@ -31,6 +31,10 @@ public class PetDetailFull {
 		this.imageUrl = imageUrl;
 	}
 
+	public PetDetailFull(Pet pet) {
+		this(pet.getPetId(), pet.getSpecies(), pet.getColor(), pet.getTimeOfBirth(), pet.getPrice(), pet.getImageUrl());
+	}
+
 	public String getId() {
 		return id;
 	}

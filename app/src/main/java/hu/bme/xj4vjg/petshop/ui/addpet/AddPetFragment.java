@@ -1,25 +1,41 @@
 package hu.bme.xj4vjg.petshop.ui.addpet;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.TextInputEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import hu.bme.xj4vjg.petshop.R;
+import hu.bme.xj4vjg.petshop.model.Pet;
+import hu.bme.xj4vjg.petshop.ui.BaseFragment;
 
 import static hu.bme.xj4vjg.petshop.PetShopApplication.injector;
 
-public class AddPetFragment extends Fragment implements AddPetScreen {
+public class AddPetFragment extends BaseFragment implements AddPetScreen {
 	public static final String TAG = "AddPetFragment";
 
 	@Inject
 	AddPetPresenter addPetPresenter;
 
-	private AddPetFragment.OnAddPetFragmentInteractionListener listener;
+	@Bind(R.id.pet_image_view)
+	ImageView petImageView;
+	@Bind(R.id.species_edit_text)
+	TextInputEditText speciesEditText;
+	@Bind(R.id.color_edit_text)
+	TextInputEditText colorEditText;
+	@Bind(R.id.age_edit_text)
+	TextInputEditText ageEditText;
+	@Bind(R.id.price_edit_text)
+	TextInputEditText priceEditText;
 
 	public AddPetFragment() {
 
@@ -39,28 +55,16 @@ public class AddPetFragment extends Fragment implements AddPetScreen {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_add_pet, container, false);
-	}
+		View root = inflater.inflate(R.layout.fragment_add_pet, container, false);
+		ButterKnife.bind(this, root);
 
-	@Override
-	public void onAttach(Context context) {
-		super.onAttach(context);
-		if (context instanceof OnAddPetFragmentInteractionListener) {
-			listener = (OnAddPetFragmentInteractionListener) context;
-		} else {
-			throw new RuntimeException(context.toString() + " must implement OnAddPetFragmentInteractionListener");
-		}
-	}
-
-	@Override
-	public void onDetach() {
-		super.onDetach();
-		listener = null;
+		return root;
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
+		updateTitle(getString(R.string.fragment_add_pet_title));
 		addPetPresenter.attachScreen(this);
 	}
 
@@ -70,37 +74,75 @@ public class AddPetFragment extends Fragment implements AddPetScreen {
 		super.onStop();
 	}
 
+	@OnClick(R.id.add_pet_button)
+	public void onAddPetButtonClick() {
+		String species = speciesEditText.getText().toString();
+		String color = colorEditText.getText().toString();
+		String age = ageEditText.getText().toString();
+		String price = priceEditText.getText().toString();
+
+		if (validatePetDetail(species, color, age, price)) {
+			addPetPresenter.addPet(
+					species,
+					color,
+					age.isEmpty() ? 0 : Pet.getTimeOfBirthFromAgeInMonths(Integer.parseInt(age)),
+					price.isEmpty() ? 0 : Integer.parseInt(price),
+					null);
+		} else {
+			showWrongPetDetailMessage();
+		}
+	}
+
+	private boolean validatePetDetail(String species, String color, String age, String price) {
+		if (species.isEmpty()) {
+			return false;
+		}
+
+		try {
+			if (!age.isEmpty()) {
+				int ageInt = Integer.parseInt(age);
+				if (ageInt < 0) {
+					return false;
+				}
+			}
+			if (!price.isEmpty()) {
+				int priceInt = Integer.parseInt(price);
+				if (priceInt < 0) {
+					return false;
+				}
+			}
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
+	}
+
 	@Override
 	public void showUnknownNetworkErrorMessage() {
-
+		showMessage(R.string.network_error);
 	}
 
 	@Override
 	public void showUnknownUserMessage() {
-
+		showMessage(R.string.unknown_user_error);
 	}
 
 	@Override
 	public void showWrongPetDetailMessage() {
-
+		showMessage(R.string.fragment_pet_detail_wrong_detail);
 	}
 
 	@Override
 	public void showNotAdminUserMessage() {
-
-	}
-
-	@Override
-	public void showPetSavedSuccessfullyMessage() {
-
+		showMessage(R.string.not_admin_user_erre);
 	}
 
 	@Override
 	public void navigateToPetList() {
-
-	}
-
-	public interface OnAddPetFragmentInteractionListener {
-		void onAddPetFinished();
+		Activity activity = getActivity();
+		if (activity != null) {
+			activity.onBackPressed();
+		}
 	}
 }

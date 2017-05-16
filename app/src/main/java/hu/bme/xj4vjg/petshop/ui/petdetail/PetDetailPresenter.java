@@ -131,7 +131,7 @@ public class PetDetailPresenter extends Presenter<PetDetailScreen> {
 		}
 	}
 
-	private Pet getPet() {
+	public Pet getPet() {
 		return pet;
 	}
 }

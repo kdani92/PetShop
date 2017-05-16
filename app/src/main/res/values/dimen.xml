@@ -10,6 +10,7 @@
 	<dimen name="margin_small">4dp</dimen>
 	<dimen name="margin_medium">12dp</dimen>
 	<dimen name="margin_large">45dp</dimen>
+	<dimen name="margin_xlarge">65dp</dimen>
 
 	<dimen name="text_size_small">10sp</dimen>
 	<dimen name="text_size_medium">16sp</dimen>
@@ -24,9 +25,16 @@
 	<dimen name="button_width">240dp</dimen>
 	<dimen name="button_height">55dp</dimen>
 
+	<!-- Pet list row -->
 	<dimen name="pet_row_horizontal_padding">8dp</dimen>
 	<dimen name="pet_row_vertical_padding">2dp</dimen>
 	<dimen name="pet_row_card_view_horizontal_padding">14dp</dimen>
 	<dimen name="pet_row_card_view_vertical_padding">10dp</dimen>
 	<dimen name="pet_row_pet_image_size">50dp</dimen>
+
+	<!-- Pet Detail -->
+	<dimen name="pet_image_size">220dp</dimen>
+
+	<!-- Add Pet -->
+	<dimen name="new_pet_image_size">140dp</dimen>
 </resources>

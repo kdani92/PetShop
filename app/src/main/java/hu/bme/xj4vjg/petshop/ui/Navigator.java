@@ -14,6 +14,7 @@ public class Navigator {
 
 	public static void navigateToLogin(Activity activity) {
 		Intent intent = new Intent(activity, LoginActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		activity.startActivity(intent);
 	}
 }

@@ -1,8 +1,8 @@
 package hu.bme.xj4vjg.petshop.ui.login;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.Toolbar;
-import android.widget.EditText;
 
 import javax.inject.Inject;
 
@@ -22,9 +22,9 @@ public class LoginActivity extends BaseActivity implements LoginScreen {
 	@Bind(R.id.toolbar)
 	Toolbar toolbar;
 	@Bind(R.id.name_edit_text)
-	EditText nameEditText;
+	TextInputEditText nameEditText;
 	@Bind(R.id.password_edit_text)
-	EditText passwordEditText;
+	TextInputEditText passwordEditText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,6 @@ public class LoginActivity extends BaseActivity implements LoginScreen {
 	protected void onStart() {
 		super.onStart();
 		loginPresenter.attachScreen(this);
-		naviageToPetList();
 	}
 
 	@Override

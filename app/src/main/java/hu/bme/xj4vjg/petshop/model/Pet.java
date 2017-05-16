@@ -5,7 +5,10 @@ import com.orm.dsl.Unique;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Calendar;
 import java.util.Locale;
+
+import hu.bme.xj4vjg.petshop.network.pet.model.NewPetDetail;
 
 @Table
 public class Pet {
@@ -34,8 +37,42 @@ public class Pet {
 		this(null, species, color, timeOfBirth, price, imageUrl);
 	}
 
+	public Pet(String petId, NewPetDetail newPetDetail) {
+		this(petId, newPetDetail.getSpecies(), newPetDetail.getColor(), newPetDetail.getTimeOfBirth(), newPetDetail.getPrice(), newPetDetail.getImageUrl());
+	}
+
+	public String getAge() {
+		long monthInMillis = 1000L * 60L * 60L * 24L * 30L;
+		long currentTime = Calendar.getInstance().getTimeInMillis();
+		if (timeOfBirth <= 0 || timeOfBirth > currentTime) {
+			return "";
+		}
+		double ageInMillis = System.currentTimeMillis() - timeOfBirth;
+		double ageInMonths = ageInMillis / monthInMillis;
+		double ageInYears = 0;
+		while ((int) (ageInMonths / 12.0) >= 1) {
+			ageInMonths -= 12.0;
+			ageInYears++;
+		}
+
+		String age;
+		if ((int) ageInYears > 0) {
+			if ((int) ageInMonths > 0) {
+				age = Long.toString((long) ageInYears) + " years " + Long.toString((long) ageInMonths) + " months";
+			} else {
+				age = Long.toString((long) ageInYears) + " years";
+			}
+		} else {
+			age = Long.toString((long) ageInMonths) + " months";
+		}
+		return age;
+	}
+
 	public String getPriceFormatted() {
-		return Integer.toString(price);
+		if (price < 0) {
+			return "";
+		}
+		return Integer.toString(price) + " HUF";
 	}
 
 	public String getPetId() {
@@ -111,5 +148,9 @@ public class Pet {
 				.append(", Price: ").append(price)
 				.append(", ImageUrl: ").append(imageUrl)
 				.toString();
+	}
+
+	public static long getTimeOfBirthFromAgeInMonths(int ageInMonths) {
+		return Calendar.getInstance().getTimeInMillis() - ageInMonths * 30L * 24L * 60L * 60L * 1000L;
 	}
 }

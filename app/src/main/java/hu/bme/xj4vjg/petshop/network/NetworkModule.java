@@ -22,7 +22,9 @@ public class NetworkModule {
 	@Provides
 	@Singleton
 	public OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder) {
-		return builder.build();
+		return builder
+				.retryOnConnectionFailure(true)
+				.build();
 	}
 
 	@Provides

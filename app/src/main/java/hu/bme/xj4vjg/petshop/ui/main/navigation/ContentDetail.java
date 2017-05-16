@@ -1,17 +1,21 @@
 package hu.bme.xj4vjg.petshop.ui.main.navigation;
 
-public class NavigationMenuDetail {
+import android.os.Bundle;
+
+public class ContentDetail {
 	private Integer index;
 	private String title;
 	private String fragmentTag;
+	private Bundle fragmentArgs;
 
-	public NavigationMenuDetail() {
+	public ContentDetail() {
 	}
 
-	public NavigationMenuDetail(Integer index, String fragmentTag, String title) {
+	public ContentDetail(Integer index, String title, String fragmentTag, Bundle fragmentArgs) {
 		this.index = index;
 		this.fragmentTag = fragmentTag;
 		this.title = title;
+		this.fragmentArgs = fragmentArgs;
 	}
 
 	public Integer getIndex() {
@@ -36,5 +40,13 @@ public class NavigationMenuDetail {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Bundle getFragmentArgs() {
+		return fragmentArgs;
+	}
+
+	public void setFragmentArgs(Bundle fragmentArgs) {
+		this.fragmentArgs = fragmentArgs;
 	}
 }

@@ -91,7 +91,6 @@ public class AddPetPresenter extends Presenter<AddPetScreen> {
 				}
 			});
 			if (screen != null) {
-				screen.showPetSavedSuccessfullyMessage();
 				screen.navigateToPetList();
 			}
 		}

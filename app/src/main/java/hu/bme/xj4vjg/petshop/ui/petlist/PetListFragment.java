@@ -75,6 +75,7 @@ public class PetListFragment extends BaseFragment implements
 		super.onAttach(context);
 		if (context instanceof OnPetListFragmentInteractionListener) {
 			listener = (OnPetListFragmentInteractionListener) context;
+			System.out.println("Activity: " + getActivity().getClass().toString());
 		} else {
 			throw new RuntimeException(context.toString() + " must implement OnPetListFragmentInteractionListener");
 		}
@@ -89,6 +90,7 @@ public class PetListFragment extends BaseFragment implements
 	@Override
 	public void onStart() {
 		super.onStart();
+		updateTitle(getString(R.string.fragment_pet_list_title));
 		petListPresenter.attachScreen(this);
 		petListPresenter.applySpeciesFilters(new ArrayList<Species>());
 		petListPresenter.updateSpecies();
@@ -125,7 +127,7 @@ public class PetListFragment extends BaseFragment implements
 
 	@Override
 	public void showOfflinePetsFoundMessage() {
-		showMessage(R.string.offline_but_pets_found_from_repo_error);
+		showMessage(R.string.offline_but_pets_found_from_repo);
 	}
 
 	@Override

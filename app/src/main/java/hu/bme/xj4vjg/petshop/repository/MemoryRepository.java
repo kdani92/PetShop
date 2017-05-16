@@ -101,33 +101,33 @@ public class MemoryRepository implements Repository {
 
 	public static List<Species> getDummySpeciesList() {
 		List<Species> dummySpeciesList = new ArrayList<>();
-		dummySpeciesList.add(new Species("species1", "rabbit"));
-		dummySpeciesList.add(new Species("species2", "guinea pig"));
-		dummySpeciesList.add(new Species("species3", "cat"));
-		dummySpeciesList.add(new Species("species4", "dog"));
-		dummySpeciesList.add(new Species("species5", "snake"));
-		dummySpeciesList.add(new Species("species6", "rat"));
+		dummySpeciesList.add(new Species("species1", "Rabbit"));
+		dummySpeciesList.add(new Species("species2", "Guinea pig"));
+		dummySpeciesList.add(new Species("species3", "Cat"));
+		dummySpeciesList.add(new Species("species4", "Dog"));
+		dummySpeciesList.add(new Species("species5", "Snake"));
+		dummySpeciesList.add(new Species("species6", "Rat"));
 
 		return dummySpeciesList;
 	}
 
 	public static List<Pet> getDummyPets() {
 		List<Pet> dummyPets = new ArrayList<>();
-		long yearInMillis = 1000 * 60 * 60 * 24 * 365;
+		long yearInMillis = 1000L * 60L * 60L * 24L * 365L;
 		long dummyTimeOfBirth = Calendar.getInstance().getTimeInMillis();
 		String dummyImageUrl = "http://notexistingrandomxyzurl.com";
 
-		dummyPets.add(new Pet("pet1", "dog", "black", dummyTimeOfBirth - yearInMillis * 4, 4500, "https://cdn.pixabay.com/photo/2014/03/05/19/23/dog-280332_960_720.jpg"));
-		dummyPets.add(new Pet("pet2", "cat", "red", dummyTimeOfBirth - yearInMillis * 2, 9000, "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg"));
-		dummyPets.add(new Pet("pet3", "rabbit", "white", dummyTimeOfBirth - yearInMillis * 6, 2000, "https://fellowshipofminds.files.wordpress.com/2011/05/bunny3.jpg"));
+		dummyPets.add(new Pet("pet1", "Dog", "black", dummyTimeOfBirth - yearInMillis / 2, 4500, "https://cdn.pixabay.com/photo/2014/03/05/19/23/dog-280332_960_720.jpg"));
+		dummyPets.add(new Pet("pet2", "Cat", "red", dummyTimeOfBirth - yearInMillis * 2, 9000, "https://s-media-cache-ak0.pinimg.com/736x/07/c3/45/07c345d0eca11d0bc97c894751ba1b46.jpg"));
+		dummyPets.add(new Pet("pet3", "Rabbit", "white", dummyTimeOfBirth - yearInMillis * 6, 2000, "https://fellowshipofminds.files.wordpress.com/2011/05/bunny3.jpg"));
 
-		dummyPets.add(new Pet("pet4", "guinea pig", "gray", dummyTimeOfBirth - yearInMillis * 4, 2500, dummyImageUrl));
-		dummyPets.add(new Pet("pet5", "cat", "gray", dummyTimeOfBirth - yearInMillis * 3, 7000, null));
-		dummyPets.add(new Pet("pet6", "snake", "white", dummyTimeOfBirth - yearInMillis * 2, 15000, dummyImageUrl));
-		dummyPets.add(new Pet("pet7", "rat", "black", dummyTimeOfBirth - yearInMillis * 1, 12000, null));
-		dummyPets.add(new Pet("pet8", "guinea pig", "gray", dummyTimeOfBirth - yearInMillis * 1, 2000, null));
-		dummyPets.add(new Pet("pet9", "rat", "white", dummyTimeOfBirth - yearInMillis * 3, 1000, dummyImageUrl));
-		dummyPets.add(new Pet("pet10", "guinea pig", "black", dummyTimeOfBirth - yearInMillis * 2, 6500, dummyImageUrl));
+		dummyPets.add(new Pet("pet4", "Guinea pig", "gray", dummyTimeOfBirth - yearInMillis * 4, 2500, dummyImageUrl));
+		dummyPets.add(new Pet("pet5", "Cat", "gray", dummyTimeOfBirth - yearInMillis * 3, 7000, null));
+		dummyPets.add(new Pet("pet6", "Snake", "white", dummyTimeOfBirth - yearInMillis * 2, 15000, dummyImageUrl));
+		dummyPets.add(new Pet("pet7", "Rat", "black", dummyTimeOfBirth - yearInMillis * 1, 12000, null));
+		dummyPets.add(new Pet("pet8", "Guinea pig", "gray", dummyTimeOfBirth - yearInMillis * 1, 2000, null));
+		dummyPets.add(new Pet("pet9", "Rat", "white", dummyTimeOfBirth - yearInMillis * 3, 1000, dummyImageUrl));
+		dummyPets.add(new Pet("pet10", "Guinea pig", "black", dummyTimeOfBirth - yearInMillis * 2, 6500, dummyImageUrl));
 
 		return dummyPets;
 	}
