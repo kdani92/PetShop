@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import javax.inject.Inject;
 
 import butterknife.Bind;
@@ -37,6 +40,8 @@ public class AddPetFragment extends BaseFragment implements AddPetScreen {
 	@Bind(R.id.price_edit_text)
 	TextInputEditText priceEditText;
 
+	private Tracker tracker;
+
 	public AddPetFragment() {
 
 	}
@@ -50,6 +55,7 @@ public class AddPetFragment extends BaseFragment implements AddPetScreen {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		injector.inject(this);
+		tracker = getTracker();
 	}
 
 	@Override
@@ -66,6 +72,9 @@ public class AddPetFragment extends BaseFragment implements AddPetScreen {
 		super.onStart();
 		updateTitle(getString(R.string.fragment_add_pet_title));
 		addPetPresenter.attachScreen(this);
+
+		tracker.setScreenName(TAG);
+		tracker.send(new HitBuilders.ScreenViewBuilder().build());
 	}
 
 	@Override
@@ -131,6 +140,11 @@ public class AddPetFragment extends BaseFragment implements AddPetScreen {
 	@Override
 	public void showWrongPetDetailMessage() {
 		showMessage(R.string.fragment_pet_detail_wrong_detail);
+
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Action")
+				.setAction("Wrong pet detail during add pet")
+				.build());
 	}
 
 	@Override
@@ -140,6 +154,11 @@ public class AddPetFragment extends BaseFragment implements AddPetScreen {
 
 	@Override
 	public void navigateToPetList() {
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Action")
+				.setAction("Pet added")
+				.build());
+
 		Activity activity = getActivity();
 		if (activity != null) {
 			activity.onBackPressed();
