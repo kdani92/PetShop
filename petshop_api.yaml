@@ -1,0 +1,261 @@
+swagger: '2.0'
+info:
+  description: >-
+    The swagger API of the PetShop project from Koós Dániel(XJ4VJG) BME Msc
+    student.
+  version: 1.0.0
+  title: PetShop API
+  contact:
+    email: koosdani92@gmail.com
+schemes:
+  - http
+paths:
+  /auth/register:
+    post:
+      tags:
+        - auth
+      description: Registers a new user.
+      operationId: register
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: body
+          name: body
+          description: Detail of the new user.
+          required: true
+          schema:
+            $ref: '#/definitions/UserDetail'
+      responses:
+        '200':
+          description: Success.
+        '410':
+          description: There's already a user registered with the same username.
+  /auth/login:
+    post:
+      tags:
+        - auth
+      description: Logs in an existing user.
+      operationId: login
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Detail of the user.
+          required: true
+          schema:
+            $ref: '#/definitions/UserDetail'
+      responses:
+        '200':
+          description: Success.
+        '410':
+          description: Wrong credentials.
+  /pet/species:
+    get:
+      tags:
+        - pet
+      description: Lists all pet species.
+      operationId: listSpecies
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: header
+          name: username
+          description: The username of the sender.
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/SpeciesList'
+        '401':
+          description: Unknown user.
+  /pet/list:
+    get:
+      tags:
+        - pet
+      description: Lists all of the pets from the shop.
+      operationId: listPets
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: header
+          name: username
+          description: The username of the sender.
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/PetList'
+        '401':
+          description: Unknown user.
+  '/pet/{petId}':
+    get:
+      tags:
+        - pet
+      description: Gets the detail of the specific pet.
+      operationId: getPet
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: header
+          name: username
+          description: The username of the sender.
+          type: string
+          required: true
+        - in: path
+          name: petId
+          description: The id of the pet.
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/PetDetailFull'
+        '401':
+          description: Unknown user.
+        '410':
+          description: Unknown pet id.
+  /pet/new:
+    post:
+      tags:
+        - pet
+      description: Adds a new pet to the shop.
+      operationId: newPet
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: header
+          name: username
+          description: The username of the sender.
+          type: string
+          required: true
+        - in: body
+          name: body
+          description: Detail of the new pet.
+          required: true
+          schema:
+            $ref: '#/definitions/NewPetDetail'
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/NewPetResponse'
+        '401':
+          description: Unknown user.
+        '410':
+          description: Wrong pet detail.
+        '420':
+          description: Only admin users can add new pets to the shop.
+definitions:
+  UserDetail:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  SpeciesDetail:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+  PetDetailSmall:
+    type: object
+    properties:
+      id:
+        type: string
+      species:
+        type: string
+      price:
+        type: integer
+        format: int64
+      imageUrl:
+        type: string
+  PetDetailFull:
+    type: object
+    properties:
+      id:
+        type: string
+      species:
+        type: string
+      color:
+        type: string
+      timeOfBirth:
+        type: integer
+        format: int64
+      price:
+        type: integer
+        format: int64
+      imageUrl:
+        type: string
+  NewPetDetail:
+    type: object
+    properties:
+      species:
+        type: string
+      color:
+        type: string
+      timeOfBirth:
+        type: integer
+        format: int64
+      price:
+        type: integer
+        format: int64
+      imageUrl:
+        type: string
+  NewPetResponse:
+    type: object
+    properties:
+      petId:
+        type: string
+  PetList:
+    type: object
+    properties:
+      petList:
+        type: array
+        xml:
+          name: pet
+          wrapped: true
+        items:
+          $ref: '#/definitions/PetDetailSmall'
+  SpeciesList:
+    type: object
+    properties:
+      speciesList:
+        type: array
+        xml:
+          name: species
+          wrapped: true
+        items:
+          $ref: '#/definitions/SpeciesDetail'

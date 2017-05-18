@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<item
+		android:id="@+id/menu_add_pet"
+		android:icon="@drawable/ic_plus_white_48dp"
+		android:title="@string/fragment_pet_list_menu_add_pet"
+		app:showAsAction="always"
+		/>
+
+	<item
+		android:id="@+id/menu_filter"
+		android:icon="@drawable/ic_filter_variant_white_48dp"
+		android:title="@string/fragment_pet_list_menu_filter"
+		app:showAsAction="always"
+		/>
+
+</menu>
