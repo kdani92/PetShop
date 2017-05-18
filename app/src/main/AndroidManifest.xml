@@ -26,6 +26,11 @@
 			android:name="DOMAIN_PACKAGE_NAME"
 			android:value="hu.bme.xj4vjg.petshop.model"/>
 
+		<meta-data
+			android:name="io.fabric.ApiKey"
+			android:value="aef56fa32bec155fdf2fd5a8d2e033e2c9ed397a"
+			/>
+
 		<activity android:name=".ui.login.LoginActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
