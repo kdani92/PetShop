@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.Tracker;
+
+import hu.bme.xj4vjg.petshop.PetShopApplication;
 import hu.bme.xj4vjg.petshop.ui.main.MainActivity;
 
 public class BaseFragment extends Fragment {
@@ -20,5 +23,12 @@ public class BaseFragment extends Fragment {
 		if (activity != null && activity instanceof MainActivity) {
 			((MainActivity) activity).updateTitle(title);
 		}
+	}
+
+	protected Tracker getTracker() {
+		if (getActivity() != null) {
+			return ((PetShopApplication) getActivity().getApplication()).getDefaultTracker();
+		}
+		return null;
 	}
 }

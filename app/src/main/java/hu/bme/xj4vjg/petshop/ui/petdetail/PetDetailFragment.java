@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import javax.inject.Inject;
 
@@ -37,6 +39,8 @@ public class PetDetailFragment extends BaseFragment implements PetDetailScreen {
 	@Bind(R.id.price_text_view)
 	TextView priceTextView;
 
+	private Tracker tracker;
+
 	public PetDetailFragment() {
 
 	}
@@ -62,6 +66,8 @@ public class PetDetailFragment extends BaseFragment implements PetDetailScreen {
 			petIdArg = "";
 		}
 		petDetailPresenter.setPetId(petIdArg);
+
+		tracker = getTracker();
 	}
 
 	@Override
@@ -80,6 +86,9 @@ public class PetDetailFragment extends BaseFragment implements PetDetailScreen {
 		petDetailPresenter.attachScreen(this);
 
 		petDetailPresenter.updatePetDetail();
+
+		tracker.setScreenName(TAG);
+		tracker.send(new HitBuilders.ScreenViewBuilder().build());
 	}
 
 	@Override
@@ -111,6 +120,11 @@ public class PetDetailFragment extends BaseFragment implements PetDetailScreen {
 	@Override
 	public void showOfflineUnknownPetMessage() {
 		showMessage(R.string.offline_and_pet_detail_not_found_from_repo_error);
+
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Action")
+				.setAction("Pet detail shown with offline mode")
+				.build());
 	}
 
 	@Override
@@ -131,5 +145,10 @@ public class PetDetailFragment extends BaseFragment implements PetDetailScreen {
 		colorTextView.setText(pet.getColor());
 		ageTextView.setText(pet.getAge());
 		priceTextView.setText(pet.getPriceFormatted());
+
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Action")
+				.setAction("Pet detail refreshed")
+				.build());
 	}
 }

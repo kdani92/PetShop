@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.Toolbar;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import javax.inject.Inject;
 
 import butterknife.Bind;
@@ -16,6 +19,8 @@ import hu.bme.xj4vjg.petshop.ui.Navigator;
 import static hu.bme.xj4vjg.petshop.PetShopApplication.injector;
 
 public class LoginActivity extends BaseActivity implements LoginScreen {
+	public static final String TAG = "LoginActivity";
+
 	@Inject
 	LoginPresenter loginPresenter;
 
@@ -26,11 +31,14 @@ public class LoginActivity extends BaseActivity implements LoginScreen {
 	@Bind(R.id.password_edit_text)
 	TextInputEditText passwordEditText;
 
+	private Tracker tracker;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		injector.inject(this);
+		tracker = getTracker();
 		ButterKnife.bind(this);
 
 		setToolbar(toolbar, R.string.activity_login_title);
@@ -40,6 +48,9 @@ public class LoginActivity extends BaseActivity implements LoginScreen {
 	protected void onStart() {
 		super.onStart();
 		loginPresenter.attachScreen(this);
+
+		tracker.setScreenName(TAG);
+		tracker.send(new HitBuilders.ScreenViewBuilder().build());
 	}
 
 	@Override
@@ -55,11 +66,19 @@ public class LoginActivity extends BaseActivity implements LoginScreen {
 
 	@Override
 	public void showWrongCredentialsMessage() {
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Action")
+				.setAction("Wrong credentials during authentication")
+				.build());
 		showMessage(R.string.activity_login_wrong_credentials_error);
 	}
 
 	@Override
 	public void showUsernameExistsMessage() {
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Action")
+				.setAction("Existing username during registration")
+				.build());
 		showMessage(R.string.activity_login_username_exists_error);
 	}
 
@@ -70,6 +89,10 @@ public class LoginActivity extends BaseActivity implements LoginScreen {
 
 	@Override
 	public void naviageToPetList() {
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Action")
+				.setAction("Successful authentication")
+				.build());
 		Navigator.navigateToMain(this);
 	}
 
