@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +40,7 @@ public class PetListFragment extends BaseFragment implements
 	@Bind(R.id.pets_recycle_view)
 	RecyclerView recyclerView;
 
+	private Tracker tracker;
 	private PetAdapter petAdapter;
 	private OnPetListFragmentInteractionListener listener;
 
@@ -53,6 +57,7 @@ public class PetListFragment extends BaseFragment implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		injector.inject(this);
+		tracker = getTracker();
 	}
 
 	@Override
@@ -98,6 +103,9 @@ public class PetListFragment extends BaseFragment implements
 		petListPresenter.applySpeciesFilters(new ArrayList<Species>());
 		petListPresenter.updateSpecies();
 		petListPresenter.updatePets();
+
+		tracker.setScreenName(TAG);
+		tracker.send(new HitBuilders.ScreenViewBuilder().build());
 	}
 
 	@Override
@@ -125,6 +133,11 @@ public class PetListFragment extends BaseFragment implements
 	@Override
 	public void onSpeciesSelected(List<Species> speciesList) {
 		petListPresenter.applySpeciesFilters(speciesList);
+
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Action")
+				.setAction("Pets filtered")
+				.build());
 	}
 
 	@Override
@@ -145,12 +158,22 @@ public class PetListFragment extends BaseFragment implements
 	@Override
 	public void showOfflinePetsFoundMessage() {
 		showMessage(R.string.offline_but_pets_found_from_repo);
+
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Action")
+				.setAction("Pets showed with offline mode")
+				.build());
 	}
 
 	@Override
 	public void refreshPets() {
 		petAdapter.setPets(petListPresenter.getFilteredPetList());
 		petAdapter.notifyDataSetChanged();
+
+		tracker.send(new HitBuilders.EventBuilder()
+				.setCategory("Action")
+				.setAction("Pets refreshed")
+				.build());
 	}
 
 	public interface OnPetListFragmentInteractionListener {

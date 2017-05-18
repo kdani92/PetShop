@@ -2,6 +2,9 @@ package hu.bme.xj4vjg.petshop;
 
 import android.app.Application;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
+
 import javax.inject.Inject;
 
 import hu.bme.xj4vjg.petshop.repository.Repository;
@@ -12,6 +15,8 @@ public class PetShopApplication extends Application {
 
 	@Inject
 	Repository repository;
+
+	private Tracker tracker;
 
 	@Override
 	public void onCreate() {
@@ -31,5 +36,13 @@ public class PetShopApplication extends Application {
 		injector = appComponent;
 		injector.inject(this);
 		repository.open(getApplicationContext());
+	}
+
+	synchronized public Tracker getDefaultTracker() {
+		if (tracker == null) {
+			GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+			tracker = analytics.newTracker(R.xml.global_tracker);
+		}
+		return tracker;
 	}
 }
